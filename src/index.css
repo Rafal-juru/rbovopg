@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Registro da Fonte Principal (conforme manual) */
+@font-face {
+  font-family: 'PlayaDelAmor';
+  src: url('./assets/fonts/Playa Del Amor.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  body {
+    @apply font-body bg-bg-light text-text-main antialiased m-0 p-0 box-border;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-title text-brand-black;
+  }
+}
