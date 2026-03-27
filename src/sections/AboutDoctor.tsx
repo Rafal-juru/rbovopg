@@ -2,7 +2,7 @@ import React from 'react';
 
 export const AboutDoctor: React.FC = () => {
   return (
-    <section className="py-24 bg-white">
+    <section id="sobre" className="py-24 bg-white">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-16">
         <div className="w-full md:w-1/2 flex justify-center">
           {/* Placeholder para a Foto do Médico */}

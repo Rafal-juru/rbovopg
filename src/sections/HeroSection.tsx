@@ -2,7 +2,7 @@ import React from 'react';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-bg-light overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center bg-bg-light overflow-hidden">
       <div className="container mx-auto px-4 z-10 flex flex-col items-center text-center">
         <h1 className="text-5xl md:text-7xl mb-6">
           Dr. Ricardo Bovo

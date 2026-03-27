@@ -29,7 +29,7 @@ export const Specialties: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-bg-light">
+    <section id="especialidades" className="py-24 bg-bg-light">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl mb-6 text-brand-black">Procedimentos</h2>

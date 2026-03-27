@@ -11,6 +11,11 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+  
   body {
     @apply font-body bg-bg-light text-text-main antialiased m-0 p-0 box-border;
   }
