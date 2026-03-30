@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import logo from '../../assets/images/logo.png';
 
@@ -11,12 +12,22 @@ const menuItems = [
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToSection = (id: string) => {
+    setMobileMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
     }
   };
 
@@ -40,6 +51,13 @@ export const Header: React.FC = () => {
               {item.name}
             </button>
           ))}
+          <Link
+            to="/blog"
+            className="text-[14px] font-medium tracking-wide text-brand-black hover:text-brand-gray transition-colors"
+            style={{ fontFamily: 'Arial, sans-serif' }}
+          >
+            Blog
+          </Link>
         </nav>
 
         {/* Direita: CTA */}
@@ -72,6 +90,14 @@ export const Header: React.FC = () => {
               {item.name}
             </button>
           ))}
+          <Link
+            to="/blog"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-left text-[14px] font-medium tracking-wide text-brand-black py-3 border-b border-gray-50"
+            style={{ fontFamily: 'Arial, sans-serif' }}
+          >
+            Blog
+          </Link>
           <Button variant="primary" className="w-full mt-2">
             Agendar Consulta
           </Button>
