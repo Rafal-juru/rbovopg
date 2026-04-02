@@ -8,6 +8,7 @@ import { Specialties } from './sections/Specialties';
 import { Login } from './pages/Login';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { BlogList } from './pages/BlogList';
+import { BlogPost } from './pages/BlogPost';
 import './index.css';
 
 function LandingPage() {
@@ -31,6 +32,12 @@ function App() {
             <div className="min-h-screen bg-bg-light">
               <Header />
               <BlogList />
+            </div>
+          } />
+          <Route path="/blog/:id" element={
+            <div className="min-h-screen bg-bg-light">
+              <Header />
+              <BlogPost />
             </div>
           } />
           <Route path="/login" element={<Login />} />

@@ -9,6 +9,8 @@ interface ProtectedRouteProps {
 export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { user, loading } = useAuth();
 
+  console.log("DEBUG ProtectedRoute -> user:", user, "loading:", loading);
+
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center bg-bg-light">Carregando...</div>;
   }

@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 interface Post {
   id: string;
   title: string;
+  subtitle: string;
   content: string;
-  image_url: string;
   external_link: string | null;
   created_at: string;
 }
@@ -54,61 +54,51 @@ export function BlogList() {
             Nenhum artigo publicado ainda.
           </div>
         ) : (
-          <div className="flex flex-col gap-8 md:gap-10">
-            {posts.map((post) => (
-              <article 
-                key={post.id} 
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 flex flex-col md:flex-row"
-              >
-                {post.image_url && (
-                  <div className="w-full md:w-2/5 h-64 md:h-auto overflow-hidden">
-                    <img 
-                      src={post.image_url} 
-                      alt={post.title} 
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    />
+          <div className="flex flex-col gap-8 md:gap-12">
+            {posts.map((post) => {
+              const LinkComponent = post.external_link ? 'a' : Link;
+              const linkProps = post.external_link 
+                ? { href: post.external_link, target: "_blank", rel: "noopener noreferrer" }
+                : { to: `/blog/${post.id}` };
+
+              return (
+                <article 
+                  key={post.id} 
+                  className="bg-white p-8 md:p-12 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100/50 flex flex-col"
+                >
+                  <div className="mb-4">
+                    <span className="text-xs tracking-widest uppercase text-gray-400 font-medium">
+                      {new Date(post.created_at).toLocaleDateString('pt-BR', {
+                        day: '2-digit',
+                        month: 'long',
+                        year: 'numeric'
+                      })}
+                    </span>
                   </div>
-                )}
-                
-                <div className="p-8 md:p-10 flex flex-col justify-center flex-1">
-                  <span className="text-sm text-gray-400 mb-3 block">
-                    {new Date(post.created_at).toLocaleDateString('pt-BR', {
-                      day: '2-digit',
-                      month: 'long',
-                      year: 'numeric'
-                    })}
-                  </span>
                   
-                  <h2 className="font-playa text-2xl md:text-3xl text-secondary mb-4 leading-tight">
-                    {post.title}
-                  </h2>
+                  <LinkComponent {...(linkProps as any)} className="group block mb-4">
+                    <h2 className="font-playa text-3xl md:text-4xl text-gray-900 group-hover:text-gray-600 transition-colors leading-tight">
+                      {post.title}
+                    </h2>
+                  </LinkComponent>
                   
-                  <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed">
-                    {post.content}
-                  </p>
+                  {post.subtitle && (
+                    <p className="text-gray-500 text-lg md:text-xl font-arial mb-8 leading-relaxed">
+                      {post.subtitle}
+                    </p>
+                  )}
                   
-                  <div className="mt-auto">
-                    {post.external_link ? (
-                      <a 
-                        href={post.external_link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary font-bold hover:text-black transition-colors"
-                      >
-                        Leia mais <ExternalLink size={16} />
-                      </a>
-                    ) : (
-                      <Link 
-                        to={`/blog/${post.id}`} 
-                        className="inline-flex items-center gap-2 text-primary font-bold hover:text-black transition-colors"
-                      >
-                        Leia mais
-                      </Link>
-                    )}
+                  <div className="mt-auto pt-4 border-t border-gray-50">
+                    <LinkComponent 
+                      {...(linkProps as any)}
+                      className="inline-flex items-center gap-2 text-gray-900 font-bold hover:text-gray-600 transition-colors uppercase tracking-wider text-sm"
+                    >
+                      Ler artigo {post.external_link && <ExternalLink size={14} />}
+                    </LinkComponent>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         )}
       </div>
