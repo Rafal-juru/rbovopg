@@ -1,14 +1,16 @@
 import React from 'react';
+import doctorPhoto from '../assets/images/bovo2.jpeg';
 
 export const AboutDoctor: React.FC = () => {
   return (
     <section id="sobre" className="py-24 bg-white">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-16">
         <div className="w-full md:w-1/2 flex justify-center">
-          {/* Placeholder para a Foto do Médico */}
-          <div className="w-full max-w-md aspect-[3/4] bg-bg-light flex items-center justify-center text-brand-gray border border-gray-100">
-            [Foto Elegante do Dr. Ricardo]
-          </div>
+          <img
+            src={doctorPhoto}
+            alt="Dr. Ricardo Bovo"
+            className="w-full max-w-md aspect-[3/4] object-cover border border-gray-100"
+          />
         </div>
         <div className="w-full md:w-1/2">
           <h2 className="text-4xl md:text-5xl mb-6 text-brand-black">
@@ -16,10 +18,10 @@ export const AboutDoctor: React.FC = () => {
           </h2>
           <div className="space-y-4 text-brand-gray leading-relaxed text-lg">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+              Médico dermatologista e especialista em medicina estética, com atuação dedicada no cuidado da pele e no rejuvenescimento natural. Formado com excelência e constantemente atualizado com as mais recentes técnicas e protocolos da dermatologia.
             </p>
             <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Acredita que cada paciente é único e merece um plano de tratamento personalizado, priorizando sempre resultados sutis, harmônicos e que preservem a identidade de cada pessoa.
             </p>
           </div>
         </div>
