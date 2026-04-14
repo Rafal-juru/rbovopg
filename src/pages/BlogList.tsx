@@ -56,7 +56,6 @@ export function BlogList() {
     <div className="min-h-screen px-6 py-12 md:py-20">
       <div className="mx-auto max-w-4xl">
         <div className="mb-16 text-center">
-          <p className="section-kicker mb-3 text-xl md:text-2xl">Conteudo autoral</p>
           <h1 className="mb-4 text-5xl font-semibold text-brand-black md:text-6xl">Blog-Bovo</h1>
           <p className="mx-auto max-w-2xl text-brand-black/70">
             Acompanhe novidades, dicas e informacoes sobre dermatologia, medicina estetica e bem-estar,

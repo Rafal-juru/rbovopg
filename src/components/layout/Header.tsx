@@ -34,16 +34,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/30 bg-brand-cream/90 backdrop-blur-[16px]">
-      <div className="container relative mx-auto grid h-24 grid-cols-[1fr_auto] items-center gap-4 px-5 md:grid-cols-[auto_1fr_auto] md:px-6">
-        <button
-          onClick={() => scrollToSection('home')}
-          className="justify-self-start text-left text-brand-black transition-colors hover:text-brand-gold-deep"
-        >
-          <span className="block text-2xl font-semibold tracking-[-0.02em] md:text-3xl">
-            Dr. Ricardo Bovo
-          </span>
-        </button>
-
+      <div className="container relative mx-auto flex h-24 items-center justify-center px-5 md:px-6">
         <nav className="hidden items-center justify-center gap-8 md:flex">
           {menuItems.map((item) => (
             <button
@@ -62,14 +53,14 @@ export const Header: React.FC = () => {
           </Link>
         </nav>
 
-        <div className="hidden justify-self-end md:block">
+        <div className="absolute right-6 hidden md:block">
           <Button variant="primary" className="!bg-brand-black !px-7 !py-3 text-xs hover:!bg-brand-gold-deep">
             Agendar Consulta
           </Button>
         </div>
 
         <button
-          className="justify-self-end p-2 text-brand-black md:hidden"
+          className="absolute right-5 p-2 text-brand-black md:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Menu"
         >
