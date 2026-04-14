@@ -14,13 +14,13 @@ interface SpecialtyProps {
 }
 
 const SpecialtyCard: React.FC<SpecialtyProps> = ({ title, description, image }) => (
-  <div className="bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+  <div className="glass-card overflow-hidden transition-transform duration-300 hover:-translate-y-1">
     <div className="overflow-hidden">
-      <img src={image} alt={title} className="w-full h-72 object-cover" />
+      <img src={image} alt={title} className="h-72 w-full object-cover" />
     </div>
     <div className="p-8">
-      <h3 className="text-2xl mb-4 text-brand-black">{title}</h3>
-      <p className="text-brand-gray leading-relaxed">{description}</p>
+      <h3 className="mb-4 text-3xl font-semibold text-brand-black">{title}</h3>
+      <p className="leading-relaxed text-brand-black/75">{description}</p>
     </div>
   </div>
 );
@@ -31,31 +31,31 @@ export const Specialties: React.FC = () => {
       title: 'Botox',
       image: proc1,
       description:
-        'Ação rejuvenescedora com toxina botulínica aplicada com técnica precisa, suavizando linhas de expressão e rugas dinâmicas do terço superior do rosto.'
+        'Aplicação precisa de toxina botulínica para suavizar linhas de expressão e valorizar a naturalidade do rosto.'
     },
     {
       title: 'Preenchimento Facial',
       image: proc2,
       description:
-        'Harmonização dos contornos faciais com ácido hialurônico para restaurar volume, realçar traços e devolver jovialidade ao semblante.'
+        'Harmonização dos contornos faciais com ácido hialurônico para restaurar volume, realçar traços e devolver jovialidade.'
     },
     {
       title: 'Bioestimulador de Colágeno',
       image: proc3,
       description:
-        'Estímulo natural à produção de colágeno que melhora a firmeza, a densidade e a qualidade da pele de forma gradual e duradoura.'
+        'Estimula a produção natural de colágeno, promovendo mais firmeza, viço e sustentação de forma gradual e duradoura.'
     },
     {
       title: 'Peeling Químico',
       image: proc4,
       description:
-        'Renovação celular profunda por meio de ácidos selecionados, tratando manchas, cicatrizes e textura irregular da pele.'
+        'Renovação celular com ácidos selecionados para tratar manchas, cicatrizes e textura irregular da pele.'
     },
     {
       title: 'Laser Facial',
       image: proc5,
       description:
-        'Tecnologia de ponta para tratamento de lesões pigmentadas, vasculares e texturais, promovendo rejuvenescimento com mínima agressão.'
+        'Tecnologia de ponta para tratar lesões pigmentadas, vasculares e texturais, com foco em rejuvenescimento e recuperação segura.'
     },
     {
       title: 'Dermatologia Clínica',
@@ -64,29 +64,30 @@ export const Specialties: React.FC = () => {
         'Acompanhamento especializado de doenças da pele, unhas, cabelos e mucosas, com diagnóstico preciso e protocolos individualizados.'
     },
     {
-      title: 'Microneurolagem com Drug Delivery',
+      title: 'Microagulhamento com Drug Delivery',
       image: proc7,
       description:
-        'Microperfuras combinadas à entrega controlada de ativos para tratar cicatrizes, estrias e melasma de maneira eficaz e segura.'
+        'Microperfurações associadas à entrega controlada de ativos para tratar cicatrizes, estrias e melasma de maneira segura.'
     }
   ];
 
   return (
-    <section id="especialidades" className="py-24 bg-bg-light">
+    <section id="especialidades" className="section-shell py-24">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl mb-6 text-brand-black">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <p className="section-kicker mb-4 text-xl md:text-2xl">Especialidades</p>
+          <h2 className="mb-6 text-5xl font-semibold text-brand-black md:text-7xl">
             Procedimentos
           </h2>
-          <p className="text-brand-gray text-lg">
+          <p className="text-lg text-brand-black/75">
             Conheça os principais procedimentos realizados com foco em resultados naturais e harmoniosos.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {specialties.map((spec, index) => (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {specialties.map((spec) => (
             <SpecialtyCard
-              key={index}
+              key={spec.title}
               title={spec.title}
               description={spec.description}
               image={spec.image}

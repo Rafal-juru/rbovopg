@@ -7,13 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-black': '#000000',
-        'brand-gray': '#8E8E8E',
-        'bg-light': '#F9F9F9',
+        'brand-black': '#1f1811',
+        'brand-gray': '#6f6559',
+        'brand-gold': '#d8be8a',
+        'brand-gold-deep': '#a88449',
+        'brand-cream': '#f8f1e8',
+        'bg-light': '#f6eee5',
         'text-main': '#1A1A1A',
       },
       fontFamily: {
-        title: ['PlayaDelAmor', 'serif'],
+        title: ['Arial', 'sans-serif'],
+        display: ['PlayaDelAmor', 'serif'],
         body: ['Arial', 'sans-serif'],
       }
     },

@@ -6,10 +6,27 @@ import { Link } from 'react-router-dom';
 interface Post {
   id: string;
   title: string;
-  content: string;
-  image_url: string;
+  content: string | null;
+  image_url: string | null;
   external_link: string | null;
   created_at: string;
+}
+
+function getPreviewText(content: string | null | undefined) {
+  if (!content) {
+    return 'Conteudo em atualizacao.';
+  }
+
+  return content
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '$1')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
+    .replace(/https?:\/\/\S+/g, '')
+    .replace(/(\*\*|__)(.*?)\1/g, '$2')
+    .replace(/(\*|_)(.*?)\1/g, '$2')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/#+\s/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 export function BlogList() {
@@ -36,71 +53,73 @@ export function BlogList() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-bg-light font-arial py-12 md:py-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="font-playa text-4xl md:text-5xl text-secondary mb-4">Blog e Artigos</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Acompanhe as últimas novidades, dicas e informações sobre medicina estética e bem-estar.
+    <div className="min-h-screen px-6 py-12 md:py-20">
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-16 text-center">
+          <p className="section-kicker mb-3 text-xl md:text-2xl">Conteudo autoral</p>
+          <h1 className="mb-4 text-5xl font-semibold text-brand-black md:text-6xl">Blog-Bovo</h1>
+          <p className="mx-auto max-w-2xl text-brand-black/70">
+            Acompanhe novidades, dicas e informacoes sobre dermatologia, medicina estetica e bem-estar,
+            com espaco preparado para fotos autorais nos artigos.
           </p>
         </div>
 
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          <div className="flex items-center justify-center py-20">
+            <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-brand-gold-deep"></div>
           </div>
         ) : posts.length === 0 ? (
-          <div className="text-center py-20 text-gray-500">
+          <div className="glass-card py-20 text-center text-brand-black/60">
             Nenhum artigo publicado ainda.
           </div>
         ) : (
           <div className="flex flex-col gap-8 md:gap-10">
             {posts.map((post) => (
-              <article 
-                key={post.id} 
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 flex flex-col md:flex-row"
+              <article
+                key={post.id}
+                className="glass-card flex flex-col overflow-hidden rounded-[28px] transition-shadow duration-300 hover:shadow-md md:flex-row"
               >
                 {post.image_url && (
-                  <div className="w-full md:w-2/5 h-64 md:h-auto overflow-hidden">
-                    <img 
-                      src={post.image_url} 
-                      alt={post.title} 
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  <div className="h-64 w-full overflow-hidden md:h-auto md:w-2/5">
+                    <img
+                      src={post.image_url}
+                      alt={post.title}
+                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                     />
                   </div>
                 )}
-                
-                <div className="p-8 md:p-10 flex flex-col justify-center flex-1">
-                  <span className="text-sm text-gray-400 mb-3 block">
+
+                <div className="flex flex-1 flex-col justify-center p-8 md:p-10">
+                  <span className="mb-3 block text-sm text-brand-black/45">
                     {new Date(post.created_at).toLocaleDateString('pt-BR', {
                       day: '2-digit',
                       month: 'long',
                       year: 'numeric'
                     })}
                   </span>
-                  
-                  <h2 className="font-playa text-2xl md:text-3xl text-secondary mb-4 leading-tight">
+
+                  <h2 className="mb-4 text-2xl font-semibold leading-tight text-brand-black md:text-4xl">
                     {post.title}
                   </h2>
-                  
-                  <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed">
-                    {post.content}
+
+                  <p className="mb-6 line-clamp-3 leading-relaxed text-brand-black/70">
+                    {getPreviewText(post.content)}
                   </p>
-                  
+
                   <div className="mt-auto">
                     {post.external_link ? (
-                      <a 
-                        href={post.external_link} 
-                        target="_blank" 
+                      <a
+                        href={post.external_link}
+                        target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary font-bold hover:text-black transition-colors"
+                        className="inline-flex items-center gap-2 font-bold text-brand-gold-deep transition-colors hover:text-black"
                       >
                         Leia mais <ExternalLink size={16} />
                       </a>
                     ) : (
-                      <Link 
-                        to={`/blog/${post.id}`} 
-                        className="inline-flex items-center gap-2 text-primary font-bold hover:text-black transition-colors"
+                      <Link
+                        to={`/blog/${post.id}`}
+                        className="inline-flex items-center gap-2 font-bold text-brand-gold-deep transition-colors hover:text-black"
                       >
                         Leia mais
                       </Link>

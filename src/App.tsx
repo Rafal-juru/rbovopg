@@ -5,6 +5,7 @@ import { Header } from './components/layout/Header';
 import { HeroSection } from './sections/HeroSection';
 import { AboutDoctor } from './sections/AboutDoctor';
 import { Specialties } from './sections/Specialties';
+import { Testimonials } from './sections/Testimonials';
 import { Login } from './pages/Login';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { BlogList } from './pages/BlogList';
@@ -17,6 +18,7 @@ function LandingPage() {
       <HeroSection />
       <AboutDoctor />
       <Specialties />
+      <Testimonials />
     </div>
   );
 }

@@ -3,25 +3,30 @@ import doctorPhoto from '../assets/images/bovo2.jpeg';
 
 export const AboutDoctor: React.FC = () => {
   return (
-    <section id="sobre" className="py-24 bg-white">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-16">
-        <div className="w-full md:w-1/2 flex justify-center">
+    <section id="sobre" className="section-shell py-24">
+      <div className="container mx-auto flex flex-col items-center gap-16 px-4 md:flex-row">
+        <div className="relative flex w-full justify-center md:w-1/2">
           <img
             src={doctorPhoto}
             alt="Dr. Ricardo Bovo"
-            className="w-full max-w-md aspect-[3/4] object-cover border border-gray-100"
+            className="glass-card aspect-[3/4] w-full max-w-md object-cover p-3"
           />
         </div>
         <div className="w-full md:w-1/2">
-          <h2 className="text-4xl md:text-5xl mb-6 text-brand-black">
+          <p className="section-kicker mb-3 text-2xl md:text-3xl">Quem cuida</p>
+          <h2 className="mb-6 text-4xl font-semibold md:text-6xl">
             Sobre o Dr. Ricardo Bovo
           </h2>
-          <div className="space-y-4 text-brand-gray leading-relaxed text-lg">
+          <div className="space-y-4 text-lg leading-relaxed text-brand-black/80">
             <p>
-              Médico dermatologista e especialista em medicina estética, com atuação dedicada no cuidado da pele e no rejuvenescimento natural. Formado com excelência e constantemente atualizado com as mais recentes técnicas e protocolos da dermatologia.
+              Médico dermatologista e especialista em medicina estética, com atuação dedicada
+              ao cuidado da pele e ao rejuvenescimento natural. Sua prática une critério técnico,
+              escuta qualificada e atualização constante.
             </p>
             <p>
-              Acredita que cada paciente é único e merece um plano de tratamento personalizado, priorizando sempre resultados sutis, harmônicos e que preservem a identidade de cada pessoa.
+              Cada paciente é atendido de forma individualizada, com planos personalizados que
+              priorizam segurança, naturalidade e resultados harmônicos, sem descaracterizar a
+              identidade de quem procura o consultório.
             </p>
           </div>
         </div>

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '../ui/Button';
-import logo from '../../assets/images/logo.png';
 
 const menuItems = [
   { name: 'Início', id: 'home' },
   { name: 'Sobre', id: 'sobre' },
-  { name: 'Especialidades', id: 'especialidades' }
+  { name: 'Especialidades', id: 'especialidades' },
+  { name: 'Relatos', id: 'relatos' }
 ];
 
 export const Header: React.FC = () => {
@@ -25,6 +25,7 @@ export const Header: React.FC = () => {
       }, 100);
       return;
     }
+
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -32,60 +33,57 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-[10px] border-b border-gray-100/50">
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        {/* Esquerda: Logo */}
-        <div className="flex-shrink-0 cursor-pointer" onClick={() => scrollToSection('home')}>
-          <img src={logo} alt="Dr. Ricardo Bovo" className="h-8 md:h-10 w-auto object-contain" />
-        </div>
+    <header className="sticky top-0 z-50 border-b border-white/30 bg-brand-cream/90 backdrop-blur-[16px]">
+      <div className="container relative mx-auto grid h-24 grid-cols-[1fr_auto] items-center gap-4 px-5 md:grid-cols-[auto_1fr_auto] md:px-6">
+        <button
+          onClick={() => scrollToSection('home')}
+          className="justify-self-start text-left text-brand-black transition-colors hover:text-brand-gold-deep"
+        >
+          <span className="block text-2xl font-semibold tracking-[-0.02em] md:text-3xl">
+            Dr. Ricardo Bovo
+          </span>
+        </button>
 
-        {/* Centro: Menu Horizontal */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden items-center justify-center gap-8 md:flex">
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="text-[14px] font-medium tracking-wide text-brand-black hover:text-brand-gray transition-colors"
-              style={{ fontFamily: 'Arial, sans-serif' }}
+              className="text-[15px] font-medium tracking-wide text-brand-black transition-colors hover:text-brand-gold-deep"
             >
               {item.name}
             </button>
           ))}
           <Link
             to="/blog"
-            className="text-[14px] font-medium tracking-wide text-brand-black hover:text-brand-gray transition-colors"
-            style={{ fontFamily: 'Arial, sans-serif' }}
+            className="text-[15px] font-medium tracking-wide text-brand-black transition-colors hover:text-brand-gold-deep"
           >
-            Blog
+            Blog-Bovo
           </Link>
         </nav>
 
-        {/* Direita: CTA */}
-        <div className="hidden md:block">
-          <Button variant="primary" className="!py-3 !px-6 text-xs">
+        <div className="hidden justify-self-end md:block">
+          <Button variant="primary" className="!bg-brand-black !px-7 !py-3 text-xs hover:!bg-brand-gold-deep">
             Agendar Consulta
           </Button>
         </div>
 
-        {/* Mobile: Menu Hambúrguer */}
-        <button 
-          className="md:hidden p-2 text-brand-black"
+        <button
+          className="justify-self-end p-2 text-brand-black md:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Menu"
         >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
-      {/* Menu Mobile */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 py-4 px-4 flex flex-col space-y-4 shadow-lg">
+        <div className="absolute left-0 right-0 top-full flex flex-col space-y-4 border-b border-white/25 bg-brand-cream px-5 py-5 shadow-lg md:hidden">
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="text-left text-[14px] font-medium tracking-wide text-brand-black py-3 border-b border-gray-50"
-              style={{ fontFamily: 'Arial, sans-serif' }}
+              className="border-b border-brand-gold/20 py-3 text-left text-[15px] font-medium tracking-wide text-brand-black"
             >
               {item.name}
             </button>
@@ -93,12 +91,11 @@ export const Header: React.FC = () => {
           <Link
             to="/blog"
             onClick={() => setMobileMenuOpen(false)}
-            className="text-left text-[14px] font-medium tracking-wide text-brand-black py-3 border-b border-gray-50"
-            style={{ fontFamily: 'Arial, sans-serif' }}
+            className="border-b border-brand-gold/20 py-3 text-left text-[15px] font-medium tracking-wide text-brand-black"
           >
-            Blog
+            Blog-Bovo
           </Link>
-          <Button variant="primary" className="w-full mt-2">
+          <Button variant="primary" className="mt-2 w-full !bg-brand-black hover:!bg-brand-gold-deep">
             Agendar Consulta
           </Button>
         </div>
