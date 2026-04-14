@@ -9,7 +9,7 @@ export default {
       colors: {
         'brand-black': '#000000',
         'brand-gray': '#8E8E8E',
-        'bg-light': '#F9F9F9',
+        'bg-light': '#F0F1EB',
         'text-main': '#1A1A1A',
       },
       fontFamily: {

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ExternalLink, ArrowLeft } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 interface Post {
   id: string;
@@ -9,6 +10,7 @@ interface Post {
   subtitle: string;
   content: string;
   external_link: string | null;
+  image_url: string | null;
   created_at: string;
 }
 
@@ -43,13 +45,6 @@ export function BlogPost() {
 
   if (!post) return null;
 
-  const renderContent = () => {
-    return post.content?.split('\n').map((paragraph, idx) => {
-      if (!paragraph.trim()) return <br key={idx} />;
-      return <p key={idx} className="mb-6">{paragraph}</p>;
-    });
-  };
-
   return (
     <div className="min-h-screen bg-bg-light font-arial py-12 md:py-20 px-6">
       <div className="max-w-3xl mx-auto">
@@ -60,11 +55,17 @@ export function BlogPost() {
         </div>
 
         <article className="bg-white p-8 md:p-16 rounded-3xl shadow-sm border border-gray-100/50">
+          {post.image_url && (
+            <div className="mb-12 overflow-hidden rounded-2xl">
+              <img src={post.image_url} alt={post.title} className="w-full h-auto object-cover max-h-[500px]" />
+            </div>
+          )}
+
           <header className="mb-12">
             <span className="text-sm tracking-widest uppercase text-gray-400 font-medium block mb-6">
               {new Date(post.created_at).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
             </span>
-            <h1 className="font-playa text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight">
+            <h1 className="font-body font-bold text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight">
               {post.title}
             </h1>
             {post.subtitle && (
@@ -74,8 +75,22 @@ export function BlogPost() {
             )}
           </header>
 
-          <div className="text-lg text-gray-700 leading-relaxed font-arial">
-            {renderContent()}
+          <div className="text-lg text-gray-700 leading-relaxed font-arial markdown-content">
+            <ReactMarkdown
+              components={{
+                img: ({node, ...props}) => <img className="rounded-2xl max-w-full h-auto my-10 mx-auto shadow-sm border border-gray-100" {...props} />,
+                p: ({node, ...props}) => <p className="mb-6 last:mb-0" {...props} />,
+                h2: ({node, ...props}) => <h2 className="font-body font-bold text-3xl text-gray-900 mt-12 mb-6" {...props} />,
+                h3: ({node, ...props}) => <h3 className="font-body font-bold text-2xl text-gray-900 mt-10 mb-4" {...props} />,
+                ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-6 space-y-2" {...props} />,
+                ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-2" {...props} />,
+                li: ({node, ...props}) => <li className="" {...props} />,
+                a: ({node, ...props}) => <a className="text-primary hover:underline font-medium" target="_blank" rel="noopener noreferrer" {...props} />,
+                strong: ({node, ...props}) => <strong className="font-bold text-gray-900" {...props} />
+              }}
+            >
+              {post.content || ''}
+            </ReactMarkdown>
           </div>
 
           {post.external_link && (

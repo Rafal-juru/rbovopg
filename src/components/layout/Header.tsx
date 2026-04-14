@@ -56,7 +56,7 @@ export const Header: React.FC = () => {
             className="text-[14px] font-medium tracking-wide text-brand-black hover:text-brand-gray transition-colors"
             style={{ fontFamily: 'Arial, sans-serif' }}
           >
-            Blog
+            Blog-Bovo
           </Link>
         </nav>
 
@@ -96,7 +96,7 @@ export const Header: React.FC = () => {
             className="text-left text-[14px] font-medium tracking-wide text-brand-black py-3 border-b border-gray-50"
             style={{ fontFamily: 'Arial, sans-serif' }}
           >
-            Blog
+            Blog-Bovo
           </Link>
           <Button variant="primary" className="w-full mt-2">
             Agendar Consulta

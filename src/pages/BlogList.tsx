@@ -9,6 +9,7 @@ interface Post {
   subtitle: string;
   content: string;
   external_link: string | null;
+  image_url: string | null;
   created_at: string;
 }
 
@@ -39,7 +40,7 @@ export function BlogList() {
     <div className="min-h-screen bg-bg-light font-arial py-12 md:py-20 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h1 className="font-playa text-4xl md:text-5xl text-secondary mb-4">Blog e Artigos</h1>
+          <h1 className="font-playa font-bold text-4xl md:text-5xl text-secondary mb-4">Blog e Artigos</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Acompanhe as últimas novidades, dicas e informações sobre medicina estética e bem-estar.
           </p>
@@ -66,6 +67,16 @@ export function BlogList() {
                   key={post.id} 
                   className="bg-white p-8 md:p-12 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100/50 flex flex-col"
                 >
+                  {post.image_url && (
+                    <LinkComponent {...(linkProps as any)} className="block mb-8 overflow-hidden rounded-xl">
+                      <img 
+                        src={post.image_url} 
+                        alt={post.title} 
+                        className="w-full h-64 md:h-80 object-cover transform hover:scale-105 transition-transform duration-700 ease-in-out" 
+                      />
+                    </LinkComponent>
+                  )}
+
                   <div className="mb-4">
                     <span className="text-xs tracking-widest uppercase text-gray-400 font-medium">
                       {new Date(post.created_at).toLocaleDateString('pt-BR', {
@@ -77,7 +88,7 @@ export function BlogList() {
                   </div>
                   
                   <LinkComponent {...(linkProps as any)} className="group block mb-4">
-                    <h2 className="font-playa text-3xl md:text-4xl text-gray-900 group-hover:text-gray-600 transition-colors leading-tight">
+                    <h2 className="font-body font-bold text-3xl md:text-4xl text-gray-900 group-hover:text-gray-600 transition-colors leading-tight">
                       {post.title}
                     </h2>
                   </LinkComponent>
@@ -93,7 +104,7 @@ export function BlogList() {
                       {...(linkProps as any)}
                       className="inline-flex items-center gap-2 text-gray-900 font-bold hover:text-gray-600 transition-colors uppercase tracking-wider text-sm"
                     >
-                      Ler artigo {post.external_link && <ExternalLink size={14} />}
+                      {post.external_link ? 'Acessar Matéria' : 'Ler artigo'} {post.external_link && <ExternalLink size={14} />}
                     </LinkComponent>
                   </div>
                 </article>
