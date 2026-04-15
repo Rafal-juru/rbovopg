@@ -14,7 +14,7 @@ interface Post {
 
 function getPreviewText(content: string | null | undefined) {
   if (!content) {
-    return 'Conteudo em atualizacao.';
+    return 'Conteúdo em atualização.';
   }
 
   return content
@@ -54,12 +54,13 @@ export function BlogList() {
 
   return (
     <div className="min-h-screen px-6 py-12 md:py-20">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-5xl">
         <div className="mb-16 text-center">
+          <p className="section-kicker mb-4">Conteúdo autoral</p>
           <h1 className="mb-4 text-5xl font-semibold text-brand-black md:text-6xl">Blog-Bovo</h1>
           <p className="mx-auto max-w-2xl text-brand-black/70">
-            Acompanhe novidades, dicas e informacoes sobre dermatologia, medicina estetica e bem-estar,
-            com espaco preparado para fotos autorais nos artigos.
+            Acompanhe novidades, dicas e informações sobre dermatologia, medicina estética e bem-estar,
+            com espaço preparado para fotos autorais nos artigos.
           </p>
         </div>
 
@@ -68,7 +69,7 @@ export function BlogList() {
             <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-brand-gold-deep"></div>
           </div>
         ) : posts.length === 0 ? (
-          <div className="glass-card py-20 text-center text-brand-black/60">
+          <div className="clinic-card py-20 text-center text-brand-black/60">
             Nenhum artigo publicado ainda.
           </div>
         ) : (
@@ -76,7 +77,7 @@ export function BlogList() {
             {posts.map((post) => (
               <article
                 key={post.id}
-                className="glass-card flex flex-col overflow-hidden rounded-[28px] transition-shadow duration-300 hover:shadow-md md:flex-row"
+                className="clinic-card flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1 md:flex-row"
               >
                 {post.image_url && (
                   <div className="h-64 w-full overflow-hidden md:h-auto md:w-2/5">
